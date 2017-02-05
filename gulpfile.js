@@ -22,7 +22,6 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var karma = require('gulp-karma');
 
 // Styles
 var sass = require('gulp-sass');
@@ -66,13 +65,6 @@ var paths = {
 		input: 'src/static/*',
 		output: 'dist/'
 	},
-	test: {
-		input: 'src/js/**/*.js',
-		karma: 'test/karma.conf.js',
-		spec: 'test/spec/**/*.js',
-		coverage: 'test/coverage/',
-		results: 'test/results/'
-	},
 	docs: {
 		input: 'src/docs/*.{html,md,markdown}',
 		output: 'docs/',
@@ -114,7 +106,7 @@ gulp.task('build:scripts', ['clean:dist'], function() {
 		.pipe(header, banner.full, { package : package })
 		.pipe(gulp.dest, paths.scripts.output)
 		.pipe(rename, { suffix: '.min' })
-		.pipe(uglify)
+		.pipe(uglify, { output: {comments: /^! /} })
 		.pipe(header, banner.min, { package : package })
 		.pipe(gulp.dest, paths.scripts.output);
 
@@ -122,9 +114,11 @@ gulp.task('build:scripts', ['clean:dist'], function() {
 		.pipe(plumber())
 		.pipe(tap(function (file, t) {
 			if ( file.isDirectory() ) {
-				var name = file.relative + '.js';
+				if ( file.relative == 'vendor')
+					return gulp.src(file.path + '/*.js')
+						.pipe(gulp.dest(paths.scripts.output + 'vendor/'));
 				return gulp.src(file.path + '/*.js')
-					.pipe(concat(name))
+					.pipe(concat(file.relative + '.js'))
 					.pipe(jsTasks());
 			}
 		}))
@@ -148,11 +142,7 @@ gulp.task('build:styles', ['clean:dist'], function() {
 		.pipe(header(banner.full, { package : package }))
 		.pipe(gulp.dest(paths.styles.output))
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(minify({
-			discardComments: {
-				removeAll: true
-			}
-		}))
+		.pipe(minify({ discardComments: {removeAll: true} }))
 		.pipe(header(banner.min, { package : package }))
 		.pipe(gulp.dest(paths.styles.output));
 });
@@ -163,11 +153,10 @@ gulp.task('build:svgs', ['clean:dist'], function () {
 		.pipe(plumber())
 		.pipe(tap(function (file, t) {
 			if ( file.isDirectory() ) {
-				var name = file.relative + '.svg';
 				return gulp.src(file.path + '/*.svg')
 					.pipe(svgmin())
 					.pipe(svgstore({
-						fileName: name,
+						fileName: file.relative + '.svg',
 						prefix: 'icon-',
 						inlineSvg: true
 					}))
@@ -205,22 +194,6 @@ gulp.task('clean:dist', function () {
 	del.sync([
 		paths.output
 	]);
-});
-
-// Remove pre-existing content from text folders
-gulp.task('clean:test', function () {
-	del.sync([
-		paths.test.coverage,
-		paths.test.results
-	]);
-});
-
-// Run unit tests
-gulp.task('test:scripts', function() {
-	return gulp.src([paths.test.input].concat([paths.test.spec]))
-		.pipe(plumber())
-		.pipe(karma({ configFile: paths.test.karma }))
-		.on('error', function(err) { throw err; });
 });
 
 // Generate documentation
@@ -261,10 +234,10 @@ gulp.task('clean:docs', function () {
 });
 
 // Spin up livereload server and listen for file changes
-gulp.task('listen', function () {
+gulp.task('watch', function () {
 	livereload.listen();
 	gulp.watch(paths.input).on('change', function(file) {
-		gulp.start('default');
+		gulp.start('compile');
 		gulp.start('refresh');
 	});
 });
@@ -302,16 +275,4 @@ gulp.task('docs', [
 gulp.task('default', [
 	'compile',
 	'docs'
-]);
-
-// Compile files and generate docs when something changes
-gulp.task('watch', [
-	'listen',
-	'default'
-]);
-
-// Run unit tests
-gulp.task('test', [
-	'default',
-	'test:scripts'
 ]);
