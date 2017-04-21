@@ -7,6 +7,6 @@
 	if ( !supports ) return;
 
 	// Add `.svg` class to <html> element
-	document.documentElement.className += (document.documentElement.className ? ' ' : '') + 'svg';
+	document.documentElement.classList.add('svg');
 
 })(window, document);

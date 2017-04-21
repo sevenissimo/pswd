@@ -202,3 +202,14 @@
 .clearfix:after {
 	clear: both;
 }
+
+
+/**
+ * Conditional visibility
+ * Lets hide certain elements that should only be exposed in environments that execute JavaScript
+ */
+
+html.no-js .js-only {
+	display: none;
+	visibility: hidden;
+}
