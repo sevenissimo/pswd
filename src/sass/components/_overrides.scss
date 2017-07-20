@@ -156,6 +156,7 @@
 	overflow: hidden;
 	padding: 0;
 	position: absolute;
+	white-space: nowrap;
 	width: 1px;
 }
 
@@ -171,6 +172,7 @@
 	margin: 0;
 	overflow: visible;
 	position: static;
+	white-space: normal;
 	width: auto;
 }
 
@@ -199,4 +201,15 @@
 
 .clearfix:after {
 	clear: both;
+}
+
+
+/**
+ * Conditional visibility
+ * Lets hide certain elements that should only be exposed in environments that execute JavaScript
+ */
+
+html.no-js .js-only {
+	display: none;
+	visibility: hidden;
 }

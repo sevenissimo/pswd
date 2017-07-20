@@ -492,7 +492,7 @@ sub {
 /**
  * Blockquotes
  */
-/* line 259, D:/Data/pswd/src/sass/components/_typography.scss */
+/* line 260, D:/Data/pswd/src/sass/components/_typography.scss */
 blockquote {
   font-size: 1.1875em;
   font-style: italic;
@@ -501,20 +501,20 @@ blockquote {
   padding-right: 0.84211em;
 }
 
-/* line 266, D:/Data/pswd/src/sass/components/_typography.scss */
+/* line 267, D:/Data/pswd/src/sass/components/_typography.scss */
 blockquote cite {
   color: #808080;
   font-size: 0.84211em;
   padding-top: 1em;
 }
 
-/* line 273, D:/Data/pswd/src/sass/components/_typography.scss */
+/* line 274, D:/Data/pswd/src/sass/components/_typography.scss */
 blockquote,
 q {
   quotes: none;
 }
 
-/* line 278, D:/Data/pswd/src/sass/components/_typography.scss */
+/* line 279, D:/Data/pswd/src/sass/components/_typography.scss */
 blockquote:before,
 blockquote:after,
 q:before,
@@ -525,7 +525,7 @@ q:after {
 /*
  * Text selection
  */
-/* line 289, D:/Data/pswd/src/sass/components/_typography.scss */
+/* line 290, D:/Data/pswd/src/sass/components/_typography.scss */
 ::-moz-selection {
   background-color: #f44336;
   color: #ffffff;
@@ -803,6 +803,7 @@ textarea:focus {
 
 /* line 121, D:/Data/pswd/src/sass/components/_forms.scss */
 [type="file"]:focus,
+[type="checkbox"]:focus,
 select:focus {
   outline: thin dotted;
   outline: 0.3125em auto -webkit-focus-ring-color;
@@ -1338,6 +1339,7 @@ noscript .alert-danger {
   overflow: hidden;
   padding: 0;
   position: absolute;
+  white-space: nowrap;
   width: 1px;
 }
 
@@ -1346,7 +1348,7 @@ noscript .alert-danger {
  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
  * @link https://www.drupal.org/node/897638
  */
-/* line 167, D:/Data/pswd/src/sass/components/_overrides.scss */
+/* line 168, D:/Data/pswd/src/sass/components/_overrides.scss */
 .screen-reader-focusable:active,
 .screen-reader-focusable:focus {
   clip: auto;
@@ -1354,6 +1356,7 @@ noscript .alert-danger {
   margin: 0;
   overflow: visible;
   position: static;
+  white-space: normal;
   width: auto;
 }
 
@@ -1362,7 +1365,7 @@ noscript .alert-danger {
  * @affected IE 8/9/10
  * @link http://juicystudio.com/article/screen-readers-display-none.php
  */
-/* line 182, D:/Data/pswd/src/sass/components/_overrides.scss */
+/* line 184, D:/Data/pswd/src/sass/components/_overrides.scss */
 [hidden], template {
   display: none;
   visibility: hidden;
@@ -1373,16 +1376,26 @@ noscript .alert-danger {
  * The space content is one way to avoid an Opera bug when the `contenteditable` attribute is included anywhere else in the document.
  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
  */
-/* line 194, D:/Data/pswd/src/sass/components/_overrides.scss */
+/* line 196, D:/Data/pswd/src/sass/components/_overrides.scss */
 .clearfix:before,
 .clearfix:after {
   display: table;
   content: " ";
 }
 
-/* line 200, D:/Data/pswd/src/sass/components/_overrides.scss */
+/* line 202, D:/Data/pswd/src/sass/components/_overrides.scss */
 .clearfix:after {
   clear: both;
+}
+
+/**
+ * Conditional visibility
+ * Lets hide certain elements that should only be exposed in environments that execute JavaScript
+ */
+/* line 212, D:/Data/pswd/src/sass/components/_overrides.scss */
+html.no-js .js-only {
+  display: none;
+  visibility: hidden;
 }
 
 /**

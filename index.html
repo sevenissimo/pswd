@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="svg">
+<html lang="en" class="no-js">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,6 +13,9 @@
 	<!-- https://github.com/audreyr/favicon-cheat-sheet -->
 	<link rel="shortcut icon" href="dist/img/favicon.ico" />
 	<link rel="icon" sizes="16x16" href="dist/img/favicon.ico">
+
+	<!-- Feature dection -->
+	<script src="dist/js/detects.js"></script>
 
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="dist/css/main.min.css">
@@ -38,7 +41,7 @@
 				</p>
 			</noscript>
 
-			<article id="app" data-tabs-content hidden>
+			<article id="app" class="js-only" data-tabs-content>
 				<header>
 					<ul data-tabs class="tabs">
 					    <li><a data-tab href="#form">Password</a></li>
@@ -114,7 +117,7 @@
 
 	<!-- scripts -->
 	<script src="dist/js/modules.min.js" integrity="sha256-Z/fWBmFzXaYO3N3nvzCYe7ImpMyMHdVcIbOLR5wam+g="></script>
-	<script src="dist/js/main.min.js" integrity="sha256-Pr6Eh6Sf5/0HqWnn3L/XB76IWu4VkYUPI4zTMFv4Aqk="></script>
+	<script src="dist/js/main.min.js" integrity="sha256-jO11ijwRwaTwrVegLfHelnGN+bXNkaFPE6wASIWx2Pk="></script>
 
 </body>
 </html>

@@ -3,34 +3,34 @@
  */
 
 // General
-var gulp = require('gulp'),
-	fs = require('fs'),
-	del = require('del'),
-	lazypipe = require('lazypipe'),
-	plumber = require('gulp-plumber'),
-	flatten = require('gulp-flatten'),
-	tap = require('gulp-tap'),
-	rename = require('gulp-rename'),
-	header = require('gulp-header'),
-	footer = require('gulp-footer'),
-	watch = require('gulp-watch'),
-	livereload = require('gulp-livereload'),
-	package = require('./package.json');
+var gulp = require('gulp');
+var fs = require('fs');
+var del = require('del');
+var lazypipe = require('lazypipe');
+var plumber = require('gulp-plumber');
+var flatten = require('gulp-flatten');
+var tap = require('gulp-tap');
+var rename = require('gulp-rename');
+var header = require('gulp-header');
+var footer = require('gulp-footer');
+var watch = require('gulp-watch');
+var livereload = require('gulp-livereload');
+var package = require('./package.json');
 
 // Scripts
-var jshint = require('gulp-jshint'),
-	stylish = require('jshint-stylish'),
-	concat = require('gulp-concat'),
-	uglify = require('gulp-uglify');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 // Styles
-var sass = require('gulp-sass'),
-	prefix = require('gulp-autoprefixer'),
-	minify = require('gulp-cssnano');
+var sass = require('gulp-sass');
+var prefix = require('gulp-autoprefixer');
+var minify = require('gulp-cssnano');
 
 // SVGs
-var svgmin = require('gulp-svgmin'),
-	svgstore = require('gulp-svgstore');
+var svgmin = require('gulp-svgmin');
+var svgstore = require('gulp-svgstore');
 
 
 /**
@@ -42,6 +42,7 @@ var paths = {
 	output: 'dist/',
 	scripts: {
 		input: 'src/js/*',
+		lint: 'src/js/**',
 		output: 'dist/js/'
 	},
 	styles: {
@@ -172,7 +173,7 @@ gulp.task('build:static', ['clean:dist'], function() {
 
 // Lint scripts
 gulp.task('lint:scripts', function () {
-	return gulp.src(paths.scripts.input)
+	return gulp.src(paths.scripts.lint)
 		.pipe(plumber())
 		.pipe(jshint())
 		.pipe(jshint.reporter('jshint-stylish'));

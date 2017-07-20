@@ -12,14 +12,6 @@
 	
 	'use srict';
 
-	// Feature test -----------------------------
-	// If minimum requirements are meet, show the app
-	if ('getElementById' in document && 'addEventListener' in window)
-		document.getElementById('app').removeAttribute('hidden');
-
-	// ('localStorage' in window && !!localStorage.setItem)
-	// ........?
-
 	// Helper functions
 	var getParamU = function(str) { return decodeURIComponent((m = str.match(/(?:u=)([^&]*)/)) ? m[1] : null) },
 		getDomain = function(url) { return (m = url.match(/(?:\w+\.)?(\w+\.\w{2,})/)) ? m[1] : null };
