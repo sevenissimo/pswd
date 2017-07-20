@@ -1,0 +1,30 @@
+.label {
+	font-size: calc-em(12px);
+	color: $color-white;
+	background-color: $color-primary;
+	font-weight: bold;
+	padding: calc-em(4px) calc-em(8px);
+	vertical-align: calc-em(1px);
+	border-radius: calc-em(1px);
+}
+
+.label-info {
+	background-color: $color-info;
+}
+
+.label-success {
+	background-color: $color-success;
+}
+
+.label-danger {
+	background-color: $color-danger;
+}
+
+.label-warning {
+	background-color: $color-warning;
+}
+
+kbd {
+	@extend .label;
+	background-color: $color-black;
+}

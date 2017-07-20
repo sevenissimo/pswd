@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="svg">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>P S W D</title>
+	<meta name="description" content="Pseudorandom Derived Password Generator">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Icons: place in the root directory -->
+	<!-- https://github.com/audreyr/favicon-cheat-sheet -->
+	<link rel="shortcut icon" href="dist/img/favicon.ico" />
+	<link rel="icon" sizes="16x16" href="dist/img/favicon.ico">
+
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="dist/css/main.min.css">
+</head>
+<body>
+	<header id="head">
+		<div class="container">
+			<h1 id="logo">
+				<svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+				</svg>
+				P S W D
+			</h1>
+		</div>
+	</header>
+
+	<main id="body">
+		<div class="container">
+			<noscript>
+				<p class="alert-danger" role="alert">
+					<span class="screen-reader">Error:</span>
+					<strong>Javascript disabled!</strong> You need to enable Javascript to use this page.
+				</p>
+			</noscript>
+
+			<article id="app" data-tabs-content hidden>
+				<header>
+					<ul data-tabs class="tabs">
+					    <li><a data-tab href="#form">Password</a></li>
+					    <li><a data-tab href="#data" hidden>Chart</a></li>
+					    <li class="right"><a data-tab href="#prefs">Preferences</a></li>
+					</ul>
+				</header>
+
+				<section id="form" class="tabs-pane active" data-tabs-pane>
+				<!--<h1 class="tabs-header">Password</h1>-->
+					<label for="seed">Domain</label>
+					<!-- Phrase used as seed to generate unique chart. -->
+					<input type="text" id="seed" placeholder="Domain name"
+					       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+					<label for="pass">Password</label>
+					<!-- Password to be derived using the chart. -->
+					<input type="password" id="pass" placeholder="Master password"
+					       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+					<label for="result">Derived Password</label>
+					<input type="text" id="result" readonly>
+					
+					<div class="tips">
+						<h4>Pro Tips</h4>
+						<p>
+							<kbd>ctrl</kbd>+<kbd>v</kbd> to paste and auto-translate URL into domain.<br>
+							<kbd>return</kbd> to navigate to next field.
+						</p>
+					</div>
+				</section>
+
+				<section id="data" class="tabs-pane" data-tabs-pane hidden>
+					<h1 class="tabs-header">Chart for <span id="domain"></span></h1>
+					<pre id="chart"></pre>
+					<p class="text-small">
+						Chart ID <span id="hash" class="label"></span>
+					</p>
+
+					<ul id="extras" class="list-inline">
+						<li><a id="save"  href="#">Save as TXT</a></li>
+						<li><a id="print" href="#">Print</a></li>
+					</ul>
+				</section>
+
+				<section id="prefs" class="tabs-pane" data-tabs-pane>
+					<h1 class="tabs-header">Preferences</h1>
+					<label>
+						<input type="checkbox" id="visible-pass">
+						Show master password when typing.
+					</label>
+					<label>
+						<input type="checkbox" id="clear-on-copy">
+						Clear derived password when copied to clipboard.
+					</label>
+					<div class="tips">
+						<h4>Bonus</h4>
+						<p>
+							A bookmarklet to help you generate password for currently opened site: 
+							<a class="btn" title="PSWD: Generate password for currently opened site"
+							   href="javascript:(function(){open('http://sevenissimo.altervista.org/pswd/?u='+encodeURIComponent(location.href)).focus()})();">PSWD</a>
+						</p>
+					</div>
+				</section>
+
+			</article><!-- #app -->
+			<aside></aside>
+
+		</div><!-- /.container -->
+	</main>
+	
+	<footer></footer>
+
+	<!-- scripts -->
+	<script src="dist/js/modules.min.js" integrity="sha256-Z/fWBmFzXaYO3N3nvzCYe7ImpMyMHdVcIbOLR5wam+g="></script>
+	<script src="dist/js/main.min.js" integrity="sha256-Pr6Eh6Sf5/0HqWnn3L/XB76IWu4VkYUPI4zTMFv4Aqk="></script>
+
+</body>
+</html>

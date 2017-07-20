@@ -1,0 +1,93 @@
+/**
+ * @section Layout
+ * Structure and layout
+ */
+.container {
+	width: $container-width;
+	max-width: $container-max-width;
+	margin: 0 auto;
+}
+
+/**
+ * @section Alert
+ * Messages to user
+ */
+noscript {
+	.alert {
+		padding: calc-em(6px) calc-em(10px);
+		background-color: $color-gray-light;
+	}
+
+	.alert-danger {
+		@extend .alert;
+		background-color: $color-primary;
+		color: $color-white;
+	}
+}
+
+
+/**
+ * @section Theme
+ * App specific theme
+ */
+#head {
+	background-color: $color-primary;
+	color: $color-white;
+	margin-bottom: $spacing * 2;
+	box-shadow: 0 5px 2px 0 rgba(0,0,0,0.1); // 0 2px 5px rgba(0,0,0,.26);
+
+	h1#logo {
+		margin: 0;
+		padding: 0.5em 0;
+	}
+}
+
+#app {
+	section {
+		h1 {
+			@extend .h3;
+
+			span#domain {
+				text-transform: uppercase;
+				text-decoration: underline;
+			}
+		}
+
+		.tips {
+			font-size: calc-em(14px);
+		}
+	}
+}
+
+
+/**
+ * @section Print
+ * Styling for printed content.
+ */
+@media print {
+	#head,
+	#app .tabs,
+	#form,
+	#prefs,
+	#extras {
+		display: none !important;
+		visibility: hidden !important;
+	}
+
+	// Show tab content
+	// Overrides line 16, src/sass/components/_tabby.scss
+	#data {
+		clip: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		width: auto;
+	}
+
+	#data {
+		display: inline-block;
+		padding: $spacing;
+		border: 1px dashed $color-gray-light;
+	}
+}

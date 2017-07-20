@@ -1,0 +1,36 @@
+/**
+ * @section SVGs
+ * SVG icon sprite styling.
+ * @link http://css-tricks.com/svg-sprites-use-better-icon-fonts/
+ * @link http://css-tricks.com/svg-use-external-source/
+ */
+
+/**
+ * Basic styles
+ * Only displayed when SVGs are supported to avoid large empty spaces
+ */
+.icon {
+	display: inline-block;
+	fill: currentColor;
+	height: 0;
+	width: 0;
+	/**
+	 * Align to text
+	 * @link: https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
+	 */
+	position: relative;
+	bottom: -0.125em;
+
+	.svg & {
+		height: 1em;
+		width: 1em;
+	}
+}
+
+
+/**
+ * Hide fallback text if browser supports SVG
+ */
+.svg .icon-fallback-text {
+	@extend .screen-reader;
+}

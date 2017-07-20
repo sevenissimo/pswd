@@ -1,0 +1,73 @@
+/*! Tabby v11.1.0 | (c) 2016 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/tabby */
+
+/**
+ * Tab content
+ */
+.js-tabby .tabs-pane {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+
+	&.active {
+		clip: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		width: auto;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+/**
+ * Tabs
+ */
+ul.tabs {
+	// Bootstrap tabs based on list style
+	@extend .list-unstyled;
+
+	// Give the tabs something to sit on
+	border-bottom: calc-em(1px) solid $color-gray-light;
+
+	> li {
+		display: inline-block;
+
+		// Make the list-items overlay the bottom border
+		margin-bottom: -( calc-em(1px) );
+		border-bottom: calc-em(1px) solid transparent;
+
+		&.active {
+			border-color: $color-primary;
+		}
+
+		&.right {
+			float: right;
+		}
+	}
+}
+
+.tabs a {
+	display: inline-block;
+	padding: calc-em(8px) calc-em(11px);
+
+	// Force browser to show a pointer on tab navigation.
+	cursor: pointer;
+
+	&:active {
+		text-decoration: none;
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		background-color: lighten($color-gray-light, 6%);
+	}
+}
