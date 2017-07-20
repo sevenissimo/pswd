@@ -1,5 +1,7 @@
-# Kraken [![Build Status](https://travis-ci.org/sevenissimo/kraken.svg)](https://travis-ci.org/sevenissimo/kraken)
-Kraken is a lightweight, mobile-first boilerplate for front-end web developers. [View the demo and get started](http://cferdinandi.github.com/kraken/).
+# PSWD [![Build Status](https://travis-ci.org/sevenissimo/pswd.svg?branch=master)](https://travis-ci.org/sevenissimo/pswd)
+PSWD is a Pseudorandom Derived Password Generator based on [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister).
+
+[Start using it!](http://sevenissimo.github.io/pswd/)
 
 
 ## How to Contribute
