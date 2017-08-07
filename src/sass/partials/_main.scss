@@ -8,21 +8,20 @@
 	margin: 0 auto;
 }
 
+
 /**
  * @section Alert
  * Messages to user
  */
-noscript {
-	.alert {
-		padding: calc-em(6px) calc-em(10px);
-		background-color: $color-gray-light;
-	}
+.alert {
+	padding: calc-em(6px) calc-em(10px);
+	background-color: $color-gray-light;
+}
 
-	.alert-danger {
-		@extend .alert;
-		background-color: $color-primary;
-		color: $color-white;
-	}
+.alert-danger {
+	@extend .alert;
+	background-color: $color-primary;
+	color: $color-white;
 }
 
 
@@ -39,6 +38,17 @@ noscript {
 	h1#logo {
 		margin: 0;
 		padding: 0.5em 0;
+		text-transform: uppercase;
+
+		sup {
+			font-size: 40%;
+			top: -1.4em;
+
+			&.label {
+				background-color: $color-white;
+				color: $color-primary;
+			}
+		}
 	}
 }
 
@@ -54,6 +64,7 @@ noscript {
 		}
 
 		.tips {
+			margin-top: 2em;
 			font-size: calc-em(14px);
 		}
 	}
@@ -90,4 +101,14 @@ noscript {
 		padding: $spacing;
 		border: 1px dashed $color-gray-light;
 	}
+}
+
+
+/**
+ * @section Overrides
+ * Conditional visibility
+ */
+html:not(.offline) .offline {
+	display: none;
+	visibility: hidden;
 }

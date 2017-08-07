@@ -1,5 +1,5 @@
 /*!
- * PSWD v1.0.0: 
+ * PSWD v1.1.0: 
  * (c) 2017 Sevenissimo
  * MIT License
  * http://github.com/sevenissimo/pswd
@@ -26,3 +26,14 @@
 	document.documentElement.classList.add('svg');
 
 })(window, document);
+;(function (window, undefined) {
+
+	'use strict';
+
+	// Service worker detection and registration
+	if ('serviceWorker' in navigator)
+		window.addEventListener('load', function() {
+			navigator.serviceWorker.register('sw.js');
+		});
+
+})(window);

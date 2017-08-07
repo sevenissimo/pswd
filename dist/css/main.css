@@ -1,5 +1,5 @@
 /*!
- * PSWD v1.0.0: 
+ * PSWD v1.1.0: 
  * (c) 2017 Sevenissimo
  * MIT License
  * http://github.com/sevenissimo/pswd
@@ -1104,13 +1104,13 @@ kbd {
  * Messages to user
  */
 /* line 16, src/sass/partials/_main.scss */
-noscript .alert, noscript .alert-danger {
+.alert, .alert-danger {
   padding: 0.375em 0.625em;
   background-color: #e5e5e5;
 }
 
 /* line 21, src/sass/partials/_main.scss */
-noscript .alert-danger {
+.alert-danger {
   background-color: #f44336;
   color: #ffffff;
 }
@@ -1119,7 +1119,7 @@ noscript .alert-danger {
  * @section Theme
  * App specific theme
  */
-/* line 33, src/sass/partials/_main.scss */
+/* line 32, src/sass/partials/_main.scss */
 #head {
   background-color: #f44336;
   color: #ffffff;
@@ -1128,20 +1128,34 @@ noscript .alert-danger {
           box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 39, src/sass/partials/_main.scss */
+/* line 38, src/sass/partials/_main.scss */
 #head h1#logo {
   margin: 0;
   padding: 0.5em 0;
+  text-transform: uppercase;
 }
 
-/* line 50, src/sass/partials/_main.scss */
+/* line 43, src/sass/partials/_main.scss */
+#head h1#logo sup {
+  font-size: 40%;
+  top: -1.4em;
+}
+
+/* line 47, src/sass/partials/_main.scss */
+#head h1#logo sup.label {
+  background-color: #ffffff;
+  color: #f44336;
+}
+
+/* line 60, src/sass/partials/_main.scss */
 #app section h1 span#domain {
   text-transform: uppercase;
   text-decoration: underline;
 }
 
-/* line 56, src/sass/partials/_main.scss */
+/* line 66, src/sass/partials/_main.scss */
 #app section .tips {
+  margin-top: 2em;
   font-size: 0.875em;
 }
 
@@ -1150,7 +1164,7 @@ noscript .alert-danger {
  * Styling for printed content.
  */
 @media print {
-  /* line 68, src/sass/partials/_main.scss */
+  /* line 79, src/sass/partials/_main.scss */
   #head,
   #app .tabs,
   #form,
@@ -1159,7 +1173,7 @@ noscript .alert-danger {
     display: none !important;
     visibility: hidden !important;
   }
-  /* line 79, src/sass/partials/_main.scss */
+  /* line 90, src/sass/partials/_main.scss */
   #data {
     clip: auto;
     height: auto;
@@ -1168,12 +1182,22 @@ noscript .alert-danger {
     position: static;
     width: auto;
   }
-  /* line 88, src/sass/partials/_main.scss */
+  /* line 99, src/sass/partials/_main.scss */
   #data {
     display: inline-block;
     padding: 1.5625em;
     border: 1px dashed #e5e5e5;
   }
+}
+
+/**
+ * @section Overrides
+ * Conditional visibility
+ */
+/* line 111, src/sass/partials/_main.scss */
+html:not(.offline) .offline {
+  display: none;
+  visibility: hidden;
 }
 
 /**

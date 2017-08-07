@@ -183,6 +183,14 @@
 	);
 
 
+	// Offline dectection ---------------------
+
+	['load', 'online', 'offline'].forEach(function(event, i) {
+		window.addEventListener(event, function(e) {
+			document.documentElement.classList.toggle('offline', !navigator.onLine);
+		});
+	});
+
 	// Modules init --------------------------
 
 	tabby.init();

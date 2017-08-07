@@ -1,5 +1,5 @@
 /*!
- * PSWD v1.0.0: 
+ * PSWD v1.1.0: 
  * (c) 2017 Sevenissimo
  * MIT License
  * http://github.com/sevenissimo/pswd
@@ -823,6 +823,14 @@
 		}
 	);
 
+
+	// Offline dectection ---------------------
+
+	['load', 'online', 'offline'].forEach(function(event, i) {
+		window.addEventListener(event, function(e) {
+			document.documentElement.classList.toggle('offline', !navigator.onLine);
+		});
+	});
 
 	// Modules init --------------------------
 

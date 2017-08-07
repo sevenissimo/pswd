@@ -1,5 +1,5 @@
 /*!
- * PSWD v1.0.0: 
+ * PSWD v1.1.0: 
  * (c) 2017 Sevenissimo
  * MIT License
  * http://github.com/sevenissimo/pswd

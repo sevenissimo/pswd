@@ -60,6 +60,10 @@ var paths = {
 	static: {
 		input: 'src/static/*',
 		output: 'dist/'
+	},
+	serviceWorker: {
+		input: 'src/js/sw.js',
+		output: './'
 	}
 };
 
@@ -89,30 +93,39 @@ var banner = {
 /**
  * Gulp Taks
  */
-
-// Lint, minify, and concatenate scripts
-gulp.task('build:scripts', ['clean:dist'], function() {
-	var jsTasks = lazypipe()
+var jsTasksFactory = function(output) {
+	return lazypipe()
 		.pipe(header, banner.full, { package : package })
-		.pipe(gulp.dest, paths.scripts.output)
+		.pipe(gulp.dest, output || paths.scripts.output)
 		.pipe(rename, { suffix: '.min' })
 		.pipe(uglify, { output: {comments: /^! /} })
 		.pipe(header, banner.min, { package : package })
-		.pipe(gulp.dest, paths.scripts.output);
+		.pipe(gulp.dest, output || paths.scripts.output);
+};
 
-	return gulp.src(paths.scripts.input)
+// Lint, minify, and concatenate scripts
+gulp.task('build:scripts', ['clean:dist'], function() {
+	var jsTasks = jsTasksFactory();
+
+	return gulp.src([paths.scripts.input, '!'+paths.serviceWorker.input])
 		.pipe(plumber())
 		.pipe(tap(function (file, t) {
 			if ( file.isDirectory() ) {
-				if ( file.relative == 'vendor')
-					return gulp.src(file.path + '/*.js')
-						.pipe(gulp.dest(paths.scripts.output + 'vendor/'));
 				return gulp.src(file.path + '/*.js')
 					.pipe(concat(file.relative + '.js'))
 					.pipe(jsTasks());
 			}
 		}))
 		.pipe(jsTasks());
+});
+
+gulp.task('build:service', [], function() {
+	return gulp.src(paths.serviceWorker.input)
+		.pipe(plumber())
+		.pipe(footer('var CACHE_NAME = "<%= cacheName %>";', {
+			cacheName : package.name +'-'+ Date.now()
+		}))
+		.pipe(jsTasksFactory(paths.serviceWorker.output)());
 });
 
 // Process, lint, and minify Sass files
@@ -205,6 +218,7 @@ gulp.task('compile', [
 	'lint:scripts',
 	'clean:dist',
 	'build:scripts',
+	'build:service',
 	'build:styles',
 	'build:images',
 	'build:static',
