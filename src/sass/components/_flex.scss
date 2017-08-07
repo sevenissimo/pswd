@@ -1,0 +1,114 @@
+/**
+ * @section Grid
+ * Structure and layout
+ */
+
+// Variable override to avoid redundant calculations.
+$grid-margins: $grid-margins * 2;
+
+// if evaluable calc nett width, else let browser do it.
+@function grid-width($width) {
+	@if comparable($width, $grid-margins) {
+		@return $width - $grid-margins;
+	} @else {
+		@return calc(#{$width} - #{$grid-margins});
+	}
+}
+
+
+/**
+ * Base grid styles: single column
+ */
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $container-max-width;
+	width: $container-width;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: stretch;
+	margin-left: $grid-margins / -2;
+	margin-right: $grid-margins / -2;
+
+	&.no-gutters {
+		margin-left: 0;
+		margin-right: 0;
+
+		& > [class^=grid] {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	&.no-wrap {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+	}
+
+	&.reverse {
+		flex-direction: row-reverse;
+	}
+}
+
+%grid-base {
+	display: flex;
+	flex: 0 0 grid-width(100%);
+	margin-left: $grid-margins / 2;
+	margin-right: $grid-margins / 2;
+}
+
+.grid-auto {
+	@extend %grid-base;
+}
+
+@for $i from 1 through $grid-columns {
+	.grid-#{$i} {
+		@extend %grid-base;
+	}
+}
+
+
+/**
+ * Add columns to grid on bigger screens
+ */
+@each $breakpoint, $namespace, $offset in ($grid-breakpoints) {
+	@media (min-width: $breakpoint) {
+		#{$namespace} .grid-auto {
+			flex: 1 0 grid-width(100% / $grid-columns);
+		}
+		@for $i from 1 through $grid-columns {
+			#{$namespace} .grid-#{$i} {
+				flex: 1 0 grid-width(100% / $grid-columns * $i);
+			}
+		}
+		@if $offset {
+			@for $i from 1 through ($grid-columns - 1) {
+				#{$namespace} .offset-#{$i} {
+					margin-left: 100% / $grid-columns * $i;
+				}
+			}
+		}
+	}
+}
+
+
+/**
+ * Dynamic grid
+ */
+.grid-dynamic {
+	@extend %grid-base;
+}
+
+@each $breakpoint in ($bp-xsmall, $bp-small, $bp-medium, $bp-large, $bp-xlarge) {
+	$bp-columns: floor($breakpoint / $grid-dynamic-minwidth);
+	@media (min-width: $breakpoint) {
+		.grid-dynamic {
+			flex: 0 0 grid-width(100% / $bp-columns);
+		}
+	}
+}
+
+// No clearfix needed ;)

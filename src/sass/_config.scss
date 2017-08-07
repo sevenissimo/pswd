@@ -45,6 +45,8 @@ $container-max-width: 40em;
 
 // Grid
 $grid-margins: 1.4%;
+// Overrides $grid-sizes on flexbox grid system
+$grid-columns: 8;
 $grid-sizes: (
 	// Grid width options
 	// Add/remove grid's as needed
@@ -69,6 +71,8 @@ $grid-breakpoints: (
 	($bp-small, ".row-start-small", false),
 	($bp-medium, null, true),
 );
+// Overrides $grid-dynamic on flexbox grid system
+$grid-dynamic-minwidth: 12em;
 $grid-dynamic: (
 	// Create grid classes that vary in size at different breakpoints
 	// Add/remove classes, breakpoints, and sizes as needed
